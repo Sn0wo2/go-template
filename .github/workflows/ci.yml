@@ -53,15 +53,10 @@ jobs:
           if-no-files-found: error
 
       - name: Check lint result
-        if: ${{ !cancelled() }}
-        env:
-          LINT_OUTCOME: ${{ steps.lint.outcome }}
-          LINT_CHANGED: ${{ steps.patch.outputs.changed }}
+        if: ${{ !cancelled() && (steps.lint.outcome != 'success' || steps.patch.outputs.changed == 'true') }}
         run: |
-          if [[ "$LINT_OUTCOME" != success || "$LINT_CHANGED" == true ]]; then
-            echo "::error::Lint failed or requires fixes. Download the lint-fixes artifact if available."
-            exit 1
-          fi
+          echo "::error::Lint failed or requires fixes. Download the lint-fixes artifact if available."
+          exit 1
 
       - run: make test security
 
