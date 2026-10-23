@@ -17,10 +17,10 @@ builds:
       - -trimpath
     ldflags:
       - -s -w
-      # Version stamping example (adjust the package path to your project):
-      # - -X {{ .ProjectName }}/cli.version={{ .Version }}
-      # - -X {{ .ProjectName }}/cli.commit={{ .Commit }}
-      # - -X {{ .ProjectName }}/cli.date={{ .Date }}
+      - -X github.com/prometheus/common/version.Version={{.Version}}
+      - -X github.com/prometheus/common/version.Revision={{.Commit}}
+      - -X github.com/prometheus/common/version.Branch={{.Branch}}
+      - -X github.com/prometheus/common/version.BuildDate={{.Date}}
 
 dockers_v2:
   - images:
