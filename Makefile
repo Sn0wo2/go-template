@@ -1,4 +1,4 @@
-BINARY_NAME ?= $(notdir $(CURDIR))
+BINARY_NAME ?= go-template
 
 .PHONY: lint lint-fix test build clean security ci release dry-release
 

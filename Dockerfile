@@ -5,6 +5,6 @@ FROM scratch
 COPY --from=certs /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/ca-certificates.crt
 
 ARG TARGETPLATFORM
-COPY $TARGETPLATFORM/app /app/app
+COPY $TARGETPLATFORM/go-template /app/go-template
 WORKDIR /app
-ENTRYPOINT ["/app/app"]
+ENTRYPOINT ["/app/go-template"]
